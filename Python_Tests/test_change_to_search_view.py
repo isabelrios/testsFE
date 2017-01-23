@@ -28,7 +28,7 @@ class AndroidTests(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
-    def test_search_bar(self):
+    def test_search_view(self):
         self.driver.implicitly_wait(30)
         current = self.driver.current_context
         context = self.driver.contexts
