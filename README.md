@@ -14,3 +14,6 @@
 * Run your emulator or connect a real device
 * Run the tests: mocha ~Path_to_the_tests_folder/test_name_of_test.js
 
+# To run Selenium tests on Desktop
+* Run the tests: mocha ~Path_to_the_tests_folder/test_name_of_test.js
+
