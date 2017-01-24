@@ -75,7 +75,7 @@ describe('Show main page', function() {
             return driver.wait(webdriver.until.elementIsVisible(driver.findElement(webdriver.By.xpath('//*[@id="root"]/div/div/div[1]/div[2]/div/div[2]/div[1]/div[4]/div/div/span'),5000)))
             .getText()
                 .then((value) => {
-                    chai.assert.isAbove(value, '0', 'Sensor value is equal or below 0')
+                    chai.assert.isAbove(parseInt(value), '0', 'Sensor value is equal or below 0')
                     chai.assert.isBelow(parseInt(value), '100', 'Sensor value is higher than 100')
                 });
         });
