@@ -53,9 +53,9 @@ describe('Show main page', function() {
             return elements.searchButton.click()
                 .then(() => {
                     return driver.wait(webdriver.until.elementIsVisible(elements.searchInputField),5000)
-                        .then(() => {
-                            return elements.searchInputField.sendKeys('San Francisco' + '\n')
-                        })
+                .then(() => {
+                    return elements.searchInputField.sendKeys('San Francisco' + '\n')
+                    });
                 });
         });
 
@@ -64,22 +64,20 @@ describe('Show main page', function() {
             driver.sleep(1000)
             this.timeout(mochaTimeOut);
             return driver.wait(webdriver.until.elementIsVisible(driver.findElement(webdriver.By.css('div.sensorName'),5000)))
-                    .getText()
-                    .then((text) => {
-                        assert.equal(text, 'Sensor')
-                    });
+                .getText()
+                .then((text) => {
+                    assert.equal(text, 'Sensor')
+                });
         });
 
         it('should get sensor measurement', function(){
-            //Not the best solution, but need to wait till the view is loaded. Need to find a better solution
-            driver.sleep(1000)
             this.timeout(mochaTimeOut);
             return driver.wait(webdriver.until.elementIsVisible(driver.findElement(webdriver.By.xpath('//*[@id="root"]/div/div/div[1]/div[2]/div/div[2]/div[1]/div[4]/div/div/span'),5000)))
             .getText()
-                    .then((value) => {
-                        chai.assert.isAbove(value, '0', 'Sensor value is equal or below 0')
-                        chai.assert.isBelow(parseInt(value), '100', 'Sensor value is higher than 100')
-                    });
+                .then((value) => {
+                    chai.assert.isAbove(value, '0', 'Sensor value is equal or below 0')
+                    chai.assert.isBelow(parseInt(value), '100', 'Sensor value is higher than 100')
+                });
         });
     });
 });
