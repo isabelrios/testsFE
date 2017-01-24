@@ -24,7 +24,6 @@ before(function() {
     .withCapabilities(webdriver.Capabilities.chrome())
     .build();
     driver.get(HOST);
-    
 });
 
 var elements;
@@ -44,7 +43,7 @@ describe('Show main page', function() {
         beforeEach(function() {
             elements = {
                 searchButton: driver.findElement(webdriver.By.xpath('/html/body/div/div/div/div[2]/div[3]/span'), 5000),
-                searchInputField: driver.findElement(webdriver.By.xpath('//*[@id="root"]/div/div/div[1]/div[3]/div/input')),
+                searchInputField: driver.findElement(webdriver.By.xpath('//*[@id="root"]/div/div/div[1]/div[3]/div/input'))
                 };
         });
 
@@ -78,6 +77,30 @@ describe('Show main page', function() {
                     chai.assert.isAbove(parseInt(value), '0', 'Sensor value is equal or below 0')
                     chai.assert.isBelow(parseInt(value), '100', 'Sensor value is higher than 100')
                 });
+        });
+
+        it('should be able to tap on start to favorite a sensor', function(){
+            this.timeout(mochaTimeOut);
+            return driver.wait(webdriver.until.elementIsVisible(driver.findElement(webdriver.By.xpath('//*[@id="root"]/div/div/div[1]/div[2]/div/div[3]/div[2]/img[2]'),5000)))
+                .click()
+                .then(() => {
+                    return driver.wait(webdriver.until.elementIsVisible(driver.findElement(webdriver.By.xpath('//*[@id="root"]/div/div[1]/div/div[1]/h1'),5000)))
+                    .getText()
+                    .then((text) => {
+                        assert.equal(text, 'Favorite Sensor')
+                    })
+                })
+        });
+
+        it('should be able to name a sensor', function(){
+            this.timeout(mochaTimeOut);
+            return driver.wait(webdriver.until.elementIsVisible(driver.findElement(webdriver.By.css('#root > div > div.jdnNXn.loaded > div > div.hjxrdF > p:nth-child(2) > input[type="text"]'),5000)))
+                .sendKeys('name')
+                .then(() => {
+                    return driver.wait(webdriver.until.elementIsVisible(driver.findElement(webdriver.By.css('#root > div > div.jdnNXn.loaded > div > div.hjxrdF > p:nth-child(3) > button'),5000)))
+                    .click()
+                    //To be checked the correct view
+                    })
         });
     });
 });
