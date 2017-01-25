@@ -10,21 +10,34 @@ function MapView() {
 
   this.accessors.favoritesButton;
   this.accessors.searchButton;
+  this.accessors.starIcon;
+  this.accessors.enterLabel;
 }
 
 MapView.prototype = Object.assign({
 
   goToFavoritesView() {
-    return this.accessors.favoritesButton.click().then(() => {
+    return this.accessors.favoritesButton.click()
+    .then(() => {
       const FavoritesView = require('../favorites/view');
       return new FavoritesView(this.driver);
     });
-  }
+  },
 
-  /*goToSearchView() {
-    return this.accessors.searchButton.click().then(() => {
+  goToSearchView() {
+    return this.accessors.searchButton.click()
+    .then(() => {
       const SearchView = require('../search/view');
       return new SearchView(this.driver);
+    });
+  },
+/*
+  tapOnStarIcon() {
+    return this.accessros.starIcon.click()
+    .then(() => {
+      return this.accessors.enterLabel.sendKeys('Test') })
+    .then(() => { 
+      return this.accessors.saveButton.click() })
   }*/
 
 }, View.prototype);

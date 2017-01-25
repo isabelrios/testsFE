@@ -11,8 +11,8 @@ function FavoritesAccessors() {
 FavoritesAccessors.prototype = Object.assign({
 
   get settingsButton() {
-    return this.waitForElement(By.xpath('//*[@id="root"]/div/div[2]/div[1]/div[1]/div/img'));
-  },
+    return this.waitForElement(By.css('#root > div > div > div.Miaiz > div:nth-child(1) > div > img'));
+  }
 
 }, Accessors.prototype);
 
