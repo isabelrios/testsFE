@@ -22,6 +22,8 @@ describe('Show main page views', function() {
         website = new Website();
     });
 
+    after(() => website.stop());
+
     beforeEach(function() {
     return website.init()
        .then((defaultView) => { mapView = defaultView });
