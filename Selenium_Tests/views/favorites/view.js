@@ -9,15 +9,21 @@ function FavoritesView() {
   View.apply(this, arguments);
 
   this.accessors.settingsButton;
+  this.accessors.defaultText;
 }
 
 FavoritesView.prototype = Object.assign({
 
   goToSettings() {
     return this.accessors.settingsButton.click()
-    /*.then(() => {
-      const SearchView = require('../favorites/view');
-      return new SearchView(this.driver);*/
+  },
+
+  checkDefaultText() {
+    return this.accessors.defaultText.getText()
+  },
+
+  checkIfFavoriteSensor() {
+    return this.accessors.getFavorite.getText()
   }
 
 }, View.prototype);

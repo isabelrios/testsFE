@@ -30,15 +30,7 @@ MapView.prototype = Object.assign({
       const SearchView = require('../search/view');
       return new SearchView(this.driver);
     });
-  },
-/*
-  tapOnStarIcon() {
-    return this.accessros.starIcon.click()
-    .then(() => {
-      return this.accessors.enterLabel.sendKeys('Test') })
-    .then(() => { 
-      return this.accessors.saveButton.click() })
-  }*/
+  }
 
 }, View.prototype);
 

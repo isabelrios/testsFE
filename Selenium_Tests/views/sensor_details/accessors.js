@@ -11,7 +11,7 @@ function SensorDetailsAccessors() {
 SensorDetailsAccessors.prototype = Object.assign({
 
   get starIcon() {
-    return this.waitForElement(By.xpath('//*[@id="root"]/div/div/div[1]/div[2]/div/div[3]/div[2]/img[2]'));
+    return this.waitForElement(By.css('#root > div > div > div.Miaiz > div:nth-child(2) > div > div.gOQtsE > div:nth-child(2) > div:nth-child(1) > div > div:nth-child(2) > div:nth-child(1) > img'));
   },
   
   get enterLabel() {

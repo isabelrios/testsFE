@@ -9,7 +9,7 @@ const By = require('selenium-webdriver').By;
 const until = webdriver.until;
 const Website = require('./website')
 
-describe('Show main page views', function() {
+describe('Favorite sensor tests', function() {
     let website;
     let mapView;
     let favoritesView;
@@ -29,20 +29,19 @@ describe('Show main page views', function() {
        .then((defaultView) => { mapView = defaultView });
     });
 
-    it('should go to favorites and settings', () => {
-       return mapView.goToFavoritesView()
-    });
-
-    it('should go to search', () => {
-        return mapView.goToSearchView()
-    });
-
     it('should search an address and favorite the sensor', () => {
         return mapView.goToSearchView()
             .then((searchView) => { searchView.enterAnAddress('San Francisco' + '\n')
             .then((sensorDetailsView) => { return sensorDetailsView.tapOnStarIcon()
             .then((nameSensor) => { nameSensor.enterName('Test') })
-            });     
             });
             });
+            });
+
+    it('should see a favorite on the list', () => {
+        return mapView.goToFavoritesView()
+            .then((favoriteView) => { favoriteView.checkIfFavoriteSensor()
+            .then((text) => { assert.equal(text, 'Test')})
+            });
+    });
 });

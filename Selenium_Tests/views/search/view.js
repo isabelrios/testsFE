@@ -9,6 +9,7 @@ function SearchView() {
   View.apply(this, arguments);
 
   this.accessors.searchField;
+  this.accessors.defaultText;
 }
 
 SearchView.prototype = Object.assign({
@@ -17,11 +18,13 @@ SearchView.prototype = Object.assign({
     return this.accessors.searchField.click().then(() => {
       this.accessors.searchField.sendKeys(address)
       }).then(() => {
-      //const MapView = require('../map/view');
-      //return new MapView(this.driver);
       const SensorDetailsView = require('../sensor_details/view');
       return new SensorDetailsView(this.driver);
-       });
+      });
+  },
+
+  checkDefaultText() {
+    return this.accessors.defaultText.getText()
   }
 
 }, View.prototype);
