@@ -16,6 +16,7 @@ describe('Favorite sensor tests', function() {
     let searchView;
     let sensorDetailsView;
     let nameSensor;
+    let removeSensor;
     this.timeout(30000);
 
     before(() => {
@@ -32,8 +33,10 @@ describe('Favorite sensor tests', function() {
     it('should search an address and favorite the sensor', () => {
         return mapView.goToSearchView()
             .then((searchView) => { searchView.enterAnAddress('San Francisco' + '\n')
-            .then((sensorDetailsView) => { return sensorDetailsView.tapOnStarIcon()
-            .then((nameSensor) => { nameSensor.enterName('Test') })
+            .then((sensorDetailsView) => { return sensorDetailsView.tapOnStarIcon('Favorite')
+            .then((nameSensor) => { nameSensor.enterName('Test') 
+            .then((sensorDetailsView) => { sensorDetailsView.checkStarIconOn() });
+            });
             });
             });
             });
@@ -42,6 +45,17 @@ describe('Favorite sensor tests', function() {
         return mapView.goToFavoritesView()
             .then((favoriteView) => { favoriteView.checkIfFavoriteSensor()
             .then((text) => { assert.equal(text, 'Test')})
+            });
+    });
+
+    it('should remove a favorite', () => {
+        return mapView.goToFavoritesView()
+            .then((favoriteView) => { favoriteView.tapOnFavoriteSensor()
+            .then((sensorDetailsView) => { sensorDetailsView.tapOnStarIcon('Unfavorite')
+            .then((removeSensor) => { removeSensor.tapUnFavoriteSensor()
+            .then((sensorDetailsView) => { sensorDetailsView.checkStarIconOff() });
+            });
+            });
             });
     });
 });

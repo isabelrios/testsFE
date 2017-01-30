@@ -10,6 +10,7 @@ function FavoritesView() {
 
   this.accessors.settingsButton;
   this.accessors.defaultText;
+  this.accessors.getFavorite;
 }
 
 FavoritesView.prototype = Object.assign({
@@ -24,6 +25,14 @@ FavoritesView.prototype = Object.assign({
 
   checkIfFavoriteSensor() {
     return this.accessors.getFavorite.getText()
+  },
+
+  tapOnFavoriteSensor() {
+    return this.accessors.getFavorite.click()
+    .then(() => {
+      const SensorDetailsView = require('../sensor_details/view');
+      return new SensorDetailsView(this.driver);
+    });
   }
 
 }, View.prototype);

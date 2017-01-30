@@ -15,10 +15,14 @@ function NameSensorView() {
 NameSensorView.prototype = Object.assign({
 
   enterName(name) {
-      return this.accessors.enterLabel.sendKeys(name)
+    return this.accessors.enterLabel.sendKeys(name)
       .then(() => { 
-     return this.accessors.saveButton.click() 
-    })
+      return this.accessors.saveButton.click() 
+      .then(() => {
+        const SensorDetailsView = require('../sensor_details/view');
+        return new SensorDetailsView(this.driver);
+    });
+    });
   }
 
 }, View.prototype);
