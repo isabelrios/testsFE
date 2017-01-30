@@ -29,7 +29,6 @@ SensorDetailsView.prototype = Object.assign({
   },
 
   checkStarIconOn() {
-    //return this.accessors.starIcon.getCssValue("opacity");
     return this.accessors.starIconOn.isDisplayed();
   },
 
